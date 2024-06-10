@@ -99,6 +99,10 @@ input {
 
     .fields {
         flex-direction: column;
-        gap: 30px;
+        gap: 50px;
+    }
+
+    .col {
+        row-gap: 5px;
     }
 }
