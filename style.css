@@ -18,6 +18,7 @@ body {
     font-size: 1.2em;
 
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -84,6 +85,26 @@ input {
 
 .rs {
     grid-column: span 2;
+}
+
+.credits {
+    margin-top: 80px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.credits a {
+    font-weight: 600;
+    color: #4175cd;
+    text-decoration: none;
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-30px);
+    }
 }
 
 #calculate {
