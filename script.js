@@ -1,23 +1,26 @@
 const regularNotesEls = [...document.querySelectorAll('.regular-note')];
 const rsEls = [...document.querySelectorAll('.rs')];
+
 const calculate = document.querySelector('#calculate').addEventListener('click', () => {
     const regularNotesValues = regularNotesEls.map(el => Number(el.value));
     const rsValues = rsEls.map(el => Number(el.value));
     const [p1, p2, p3, p4] = regularNotesValues;
-    let message = '';
     let ms1, ms2;
 
-    if (rsValues.every(value => Boolean(value))) {
-        [ms1, ms2] = rsValues;
-    } else if (regularNotesValues.every(value => Boolean(value))) {
-        ms1 = Number(((p1 + p2) / 2).toFixed(1));
-        ms2 = Number(((p3 + p4) / 2).toFixed(1));
-    } else {
+    ms1 = rsValues[0] || Number(((p1 + p2) / 2).toFixed(1));
+    ms2 = rsValues[1] || Number(((p3 + p4) / 2).toFixed(1));
+
+    if (rsValues.some(value => value == null)) {
         window.alert('Insira os dados corretamente!');
         return;
     }
 
     const ma = Number(((ms1 + ms2) / 2).toFixed(1));
+    showResult(ma, p4);
+});
+
+function showResult(ma, p4) {
+    let message = '';
     message = `Sua Média Anual foi de ${ma} pontos.\n\n`;
 
     if (ma >= 6 && (p4 ? p4 >= 4 : true)) message += 'Como você obteve uma média acima de 6.0 pontos, você está aprovado. Parabéns!';
@@ -30,4 +33,4 @@ const calculate = document.querySelector('#calculate').addEventListener('click',
     }
 
     window.alert(message);
-});
+}
